@@ -5,9 +5,9 @@ Clojure-style atoms for Scala
 Atoms manage shared, synchronous, independent state. Intended to hold immutable data-structures.
 
 * Thread safe
-* Uses uses a CAS (compare and swap) to safely update (under load)
+* Uses uses a CAS (compare and swap) for safe updates
 * Fast
-* Covers 90% of your state managements needs
+* Covers 90% of your state managements needs (based my empirical evidence)
 
 ## Artifacts
 
@@ -21,7 +21,7 @@ libraryDependencies += "io.github.martintrojer" % "atom-scala_2.10" % "0.1-SNAPS
 
 ## Usage
 
-The main function `swap` takes a side-effect free function that gets called with the old state and produces new. Can be called multiple times.
+The main function `swap` takes a side-effect free function that gets called with the old state and produces the new state. Please be aware, this function can be called multiple times!
 
 The `reset` function simply overwrites the old value.
 
@@ -44,7 +44,7 @@ scala> a.get
 res2: Int = 42
 ```
 
-Also supports Monadic Usage
+Supports Monadic Usage
 
 ```scala
 // map
@@ -71,8 +71,6 @@ for ( v <- a ) {
 }
 res: Int = 42
 ```
-
-Also see the [tests](https://github.com/martintrojer/atom-scala/blob/master/src/test/scala/Atom/AtomTest.scala).
 
 ## References
 
