@@ -47,16 +47,12 @@ res2: Int = 42
 Also supports Monadic Usage
 
 ```scala
-// foreach
-var res = 0
-val a = Atom(42)
-for ( v <- a ) {
-  res = res + v
-}
-
 // map
-Atom(42) map { _ + 1 }
-for ( v <- Atom(42) ) yield v + 1
+scala> Atom(42) map { _ + 1 }
+res3: Atom.Atom[Int] = 43
+
+scala> for ( v <- Atom(42) ) yield v + 1
+res4: Atom.Atom[Int] = 43
 
 // flatMap
 val a1 = Atom(42)
@@ -65,6 +61,15 @@ for {
   v1 <- a1
   v2 <- a2
 } yield v1 + v2
+res5: Atom.Atom[Int] = 85
+
+// foreach
+var res = 0
+val a = Atom(42)
+for ( v <- a ) {
+  res = res + v
+}
+res: Int = 42
 ```
 
 Also see the [tests](https://github.com/martintrojer/atom-scala/blob/master/src/test/scala/Atom/AtomTest.scala).
