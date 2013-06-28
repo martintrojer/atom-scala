@@ -51,17 +51,17 @@ Supports Monadic Usage
 scala> Atom(42) map { _ + 1 }
 res3: Atom.Atom[Int] = 43
 
-scala> for ( v <- Atom(42) ) yield v + 1
-res4: Atom.Atom[Int] = 43
+scala> for ( v <- Atom(Set('a)) ) yield v + 'b
+res4: Atom.Atom[scala.collection.immutable.Set[Symbol]] = Set('a, 'b)
 
 // flatMap
-val a1 = Atom(42)
-val a2 = Atom(43)
+val a1 = Atom(Map('a -> 1))
+val a2 = Atom(Map('b -> 2))
 for {
   v1 <- a1
   v2 <- a2
-} yield v1 + v2
-res5: Atom.Atom[Int] = 85
+} yield (v1 ++ v2)
+res5: Atom.Atom[scala.collection.immutable.Map[Symbol,Int]] = Map('a -> 1, 'b -> 2)
 
 // foreach
 var res = 0
